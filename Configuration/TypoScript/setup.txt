@@ -104,26 +104,47 @@ config {
     concatenateCss = {$config.concatenateCss}
 }
 
-
-page.10.file.stdWrap.cObject {
-  key.data = levelfield:-1, backend_layout_next_level, slide
-  key.override.field = backend_layout
-  bootstrap_package__accueil = TEXT
-  bootstrap_package__accueil.value = {$page.fluidtemplate.templateRootPath}Decouverte.html
-  bootstrap_package__accueil.insertData = 1
-  
-  bootstrap_package__decouverteclean = TEXT
-  bootstrap_package__decouverteclean.value = {$page.fluidtemplate.templateRootPath}Decouverteclean.html
-  bootstrap_package__decouverteclean.insertData = 1
-  
-  default = TEXT
-  default.value = {$page.fluidtemplate.templateRootPath}Decouverte.html
-  default.insertData = 1
-}
-
-page.includeCSS.theme = EXT:adico_decouverte/Resources/Private/Less/Theme/theme.less
-
 page {
+    10 {
+        file {
+            stdWrap {
+                cObject = CASE
+                cObject {
+                    key.data = levelfield:-1, backend_layout_next_level, slide
+                    key.override.field = backend_layout
+
+                    pagets__accueil = TEXT
+                    pagets__accueil.value = Decouverte
+                    pagets__accueil.insertData = 1
+
+                    pagets__decouverteclean = TEXT
+                    pagets__decouverteclean.value = Decouverteclean
+                    pagets__decouverteclean.insertData = 1
+					
+                    default = TEXT
+                    default.value = Decouverte
+                    default.insertData = 1
+                 }
+            }
+        }
+        templateRootPaths {
+            0 = EXT:adico_evolution3/Resources/Private/Templates/Page/
+            1 = {$page.fluidtemplate.templateRootPath}
+        }
+        partialRootPaths {
+            0 = EXT:adico_evolution3/Resources/Private/Partials/Page/
+            1 = {$page.fluidtemplate.partialRootPath}
+        }
+        layoutRootPaths {
+            0 = EXT:adico_evolution3/Resources/Private/Layouts/Page/
+            1 = {$page.fluidtemplate.layoutRootPath}
+        }
+    }
+
+    includeCSS {
+        theme = EXT:adico_decouverte/Resources/Private/Less/Theme/theme.less
+    }
+
     jsFooterInline {
         # Piwik Analytics
         10 = COA
